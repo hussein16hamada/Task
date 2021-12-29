@@ -1,6 +1,7 @@
 package com.example.task.logIn.api
 
-import com.example.task.logIn.model.LogInModel
+import com.example.task.logIn.model.LogInResponse
+import com.example.task.logIn.model.UserResponse
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -8,12 +9,12 @@ interface ApiCalls {
     @POST("login")
     @FormUrlEncoded
     fun logIn(
-        @Field("MobileNumber") mobileNumber: Int,
+        @Field("MobileNumber") mobileNumber: String,
         @Field("Password") password: Int
-    ): Single<Any>
+    ): Single<LogInResponse>
 
     @GET("GetPayroll ")
-    fun getUserData(): Single<Any>
+    fun getUserData(): Single<UserResponse>
 
 
 //    @GET("_english.json")

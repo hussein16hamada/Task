@@ -1,49 +1,59 @@
 package com.example.task.logIn.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.task.base.MyApplication
+import com.example.task.base.TinyDB
 import com.example.task.logIn.api.APIManger
-import com.example.task.logIn.model.LogInModel
+import com.example.task.logIn.model.LogInResponse
+import com.example.task.logIn.model.UserResponse
 import io.reactivex.Single
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import org.reactivestreams.Subscriber
-import org.reactivestreams.Subscription
-import java.util.ArrayList
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.runBlocking
 
 class LogInViewModel : ViewModel() {
-     val message: MutableLiveData<Boolean> = MutableLiveData()
-    val userDataList: MutableLiveData<Boolean> = MutableLiveData()
+     val loading:MutableStateFlow <Boolean?> = MutableStateFlow(null)
+    val userDataList: MutableLiveData<UserResponse> = MutableLiveData()
+    val userLoggInDataList: MutableLiveData<LogInResponse> = MutableLiveData()
 
+    var tinyDB =TinyDB(MyApplication.getAppContext())
     private val disposable: CompositeDisposable =CompositeDisposable()
 
 
-    fun logInUser(mobileNumber:Int ,password:Int){
-        val single: Single<Any> = APIManger.getApis().logIn(mobileNumber,password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    fun logInUser(mobileNumber:String ,password:Int){
+        val single: Single<LogInResponse> = APIManger.getApis()?.logIn(mobileNumber,password)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread()) as Single<LogInResponse>
 
-        val singleObserver: SingleObserver<Any> =
-            object : SingleObserver<Any> {
+        val singleObserver: SingleObserver<LogInResponse> =
+            object : SingleObserver<LogInResponse> {
                 override fun onSubscribe(d: Disposable) {
                     disposable.add(d)
                 }
 
-                override fun onSuccess(t:Any) {
-                    Log.d("eeeeeeees", t.toString())
-                    message.postValue(true)
+                override fun onSuccess(t:LogInResponse) {
+                    userLoggInDataList.postValue(t)
+                    if (t.token !=null){
+                        tinyDB.putString("token",t.token)
+
+                    }
+                    runBlocking {
+                        loading.emit(true)
+
+                    }
                     getUserData()
                 }
 
                 override fun onError(e: Throwable) {
+                   runBlocking {
+                       loading.emit(false)
 
-                    message.postValue(false)
-                    Log.d("eeeeeeeef", e.localizedMessage)
+                   }
 
                 }
             }
@@ -52,23 +62,21 @@ class LogInViewModel : ViewModel() {
     }
 
     fun getUserData(){
-        val single: Single<Any> = APIManger.getApis().getUserData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        val single: Single<UserResponse> = APIManger.getApis()?.getUserData()
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread()) as Single<UserResponse>
 
-        val singleObserver: SingleObserver<Any> =
-            object : SingleObserver<Any> {
+        val singleObserver: SingleObserver<UserResponse> =
+            object : SingleObserver<UserResponse> {
                 override fun onSubscribe(d: Disposable) {
                     disposable.add(d)
                 }
 
-                override fun onSuccess(t: Any) {
-                    Log.d("eeeeeeeeus", t.toString())
-
+                override fun onSuccess(t: UserResponse) {
+                    userDataList.postValue(t)
                 }
 
                 override fun onError(e: Throwable) {
-                    Log.d("eeeeeeeeuf", e.localizedMessage)
 
                 }
 

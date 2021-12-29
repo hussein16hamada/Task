@@ -61,7 +61,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="محمد عزب محمد"
+                    tools:text="محمد عزب محمد"
                     android:layout_marginTop="8dp"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -70,7 +70,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/userDep"
+                    android:id="@+id/userJop"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -99,7 +99,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/date"
-                    app:layout_constraintTop_toBottomOf="@+id/userDep" />
+                    app:layout_constraintTop_toBottomOf="@+id/userJop" />
 
                 <TextView
                     android:id="@+id/salary"
@@ -165,6 +165,7 @@
 
                             android:padding="8dp">
 
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -188,9 +189,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="API Level"
+                                android:text="م"
                                 android:textColor="@android:color/white" />
                         </TableRow>
+                        <View android:layout_width="match_parent"
+                            android:background="#74CBD6"
+                            android:layout_height="2dp" />
 
                         <TableRow
                             android:background="@color/white"
@@ -198,6 +202,7 @@
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/mainSal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -207,6 +212,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
+                                android:id="@+id/main"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -221,17 +227,20 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="24"
+                                android:text="1"
 
                                 android:textColor="@android:color/black"
                                 android:textSize="18sp" />
                         </TableRow>
-
+                        <View android:layout_width="match_parent"
+                            android:background="#74CBD6"
+                            android:layout_height="2dp" />
                         <TableRow
                             android:background="#3C00BCD4"
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/workSAl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -243,6 +252,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
+                                android:id="@+id/work"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -258,17 +268,20 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="23"
+                                android:text="2"
                                 android:textColor="@android:color/black"
 
                                 android:textSize="18sp" />
                         </TableRow>
-
+                        <View android:layout_width="match_parent"
+                            android:background="#74CBD6"
+                            android:layout_height="2dp" />
                         <TableRow
                             android:background="#3EF44336"
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/cutSal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -279,6 +292,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
+                                android:id="@+id/cutt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -293,11 +307,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="21"
+                                android:text="3"
                                 android:textColor="@android:color/black"
 
                                 android:textSize="18sp" />
                         </TableRow>
+                        <View android:layout_width="match_parent"
+                            android:background="#74CBD6"
+                            android:layout_height="2dp" />
                     </TableLayout>
 
                 </androidx.cardview.widget.CardView>
