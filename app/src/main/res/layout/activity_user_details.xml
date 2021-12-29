@@ -132,6 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <im.dacer.androidcharts.PieView
                     android:id="@+id/pie"
                     class="im.dacer.androidcharts.PieView"

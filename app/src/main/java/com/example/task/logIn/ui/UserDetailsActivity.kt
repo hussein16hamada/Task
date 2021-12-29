@@ -136,6 +136,8 @@ class UserDetailsActivity : AppCompatActivity() {
     }
 
     private fun setPie(pieView: PieView, userData: UserResponse) {
+        // TODO this lib not showing the fractions ,
+        //  i did not get enough time to look for better alternative but sure there is
         positiveTotalSalary(userData)
         val pieHelperArrayList = ArrayList<PieHelper>()
         pieHelperArrayList.add(
