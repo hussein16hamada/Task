@@ -96,6 +96,7 @@ class UserDetailsActivity : AppCompatActivity() {
                 userData.payroll?.employee?.get(0)?.cURRSYMBOLAR
     }
 
+    // calculate totalSalary
     private fun totalSalary(userData: UserResponse) {
         tootal = String.format(
             "%.2f", (((userData.payroll?.allowences?.get(0)?.sALVALUE)
@@ -105,7 +106,7 @@ class UserDetailsActivity : AppCompatActivity() {
 
 
     }
-
+    // positive total salary for pie chart
     private fun positiveTotalSalary(userData: UserResponse) {
         pTootal = String.format(
             "%.2f", (((userData.payroll?.allowences?.get(0)?.sALVALUE)
