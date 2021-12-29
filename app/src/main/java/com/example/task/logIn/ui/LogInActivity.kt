@@ -27,10 +27,10 @@ class LogInActivity : AppCompatActivity() {
     }
 
     private fun clickListeners() {
-        // TODO show progress bar while loading
+        // TODO should show progress bar while loading
         binding.signIn.setOnClickListener {
             logInViewModel.logInUser(
-                // TODO validation
+                // TODO Shoild do  validation
                 binding.mobilNumber.editText?.text?.toString()!!,
                 binding.password.editText?.text?.toString()!!.toInt()
             )

@@ -24,7 +24,8 @@ class LogInViewModel : ViewModel() {
     var tinyDB =TinyDB(MyApplication.getAppContext())
     private val disposable: CompositeDisposable =CompositeDisposable()
 
-
+     // log in method and pass the value to  MutableLiveData
+     //  add MutableLiveData for loading but did not use due the time
     fun logInUser(mobileNumber:String ,password:Int){
         val single: Single<LogInResponse> = APIManger.getApis()?.logIn(mobileNumber,password)
             ?.subscribeOn(Schedulers.io())
@@ -61,6 +62,7 @@ class LogInViewModel : ViewModel() {
 
     }
 
+    // get user data after logged in and pass it to MutableLive data
     fun getUserData(){
         val single: Single<UserResponse> = APIManger.getApis()?.getUserData()
             ?.subscribeOn(Schedulers.io())
